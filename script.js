@@ -377,16 +377,16 @@ function animateRace() {
             const data = racerData[racerId];
             const runner = document.querySelector(`.racer-runner[data-racer-id="${racerId}"]`);
 
-            // Random power-up activation (1% chance per update)
-            if (!data.powerUpActive && !data.poopSlowdown && Math.random() < 0.01) {
+            // Random power-up activation (0.5% chance per update - reduced by 50%)
+            if (!data.powerUpActive && !data.poopSlowdown && Math.random() < 0.005) {
                 data.powerUpActive = true;
                 data.powerUpCounter = 40; // Power-up lasts for 40 updates (~2 seconds)
                 runner.classList.add('power-up-active');
                 playBeep(1000, 0.1); // Power-up sound
             }
 
-            // Random poop obstacle (1% chance per update)
-            if (!data.poopSlowdown && !data.powerUpActive && Math.random() < 0.01) {
+            // Random poop obstacle (0.5% chance per update - reduced by 50%)
+            if (!data.poopSlowdown && !data.powerUpActive && Math.random() < 0.005) {
                 data.poopSlowdown = true;
                 data.poopCounter = 50; // Slowdown lasts for 50 updates (~2.5 seconds)
                 runner.classList.add('poop-slowdown');
