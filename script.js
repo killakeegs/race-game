@@ -344,6 +344,24 @@ function setupRaceTrack() {
     });
 }
 
+// Animate parallax scrolling
+function animateParallax(progress) {
+    const bgLayer = document.querySelector('.parallax-bg');
+    const midLayer = document.querySelector('.parallax-mid');
+    const fgLayer = document.querySelector('.parallax-fg');
+
+    if (bgLayer && midLayer && fgLayer) {
+        // Different speeds for each layer to create depth
+        const bgSpeed = progress * 15; // Slowest (15% movement)
+        const midSpeed = progress * 40; // Medium (40% movement)
+        const fgSpeed = progress * 80; // Fastest (80% movement)
+
+        bgLayer.style.transform = `translateX(-${bgSpeed}%)`;
+        midLayer.style.transform = `translateX(-${midSpeed}%)`;
+        fgLayer.style.transform = `translateX(-${fgSpeed}%)`;
+    }
+}
+
 // Animate the race
 function animateRace() {
     const trackWidth = raceTrack.offsetWidth - 100; // Account for finish line and padding
@@ -372,6 +390,10 @@ function animateRace() {
 
     const raceInterval = setInterval(() => {
         currentUpdate++;
+
+        // Update parallax based on race progress
+        const raceProgress = currentUpdate / totalUpdates;
+        animateParallax(raceProgress);
 
         selectedRacers.forEach(racerId => {
             const data = racerData[racerId];
