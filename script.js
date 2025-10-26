@@ -34,11 +34,32 @@ const winnerDisplay = document.getElementById('winner-display');
 const raceAgainBtn = document.getElementById('race-again-btn');
 const newSelectionBtn = document.getElementById('new-selection-btn');
 
+// Apply seasonal theme based on current date
+function applySeasonalTheme() {
+    const today = new Date();
+    const month = today.getMonth(); // 0-11 (0 = January, 9 = October, 10 = November)
+    const day = today.getDate();
+
+    // Remove any existing seasonal themes
+    document.body.classList.remove('theme-halloween', 'theme-thanksgiving');
+
+    // October 1st through October 31st = Halloween
+    if (month === 9) { // October
+        document.body.classList.add('theme-halloween');
+    }
+
+    // November 1st onwards = Thanksgiving (through November)
+    if (month === 10) { // November
+        document.body.classList.add('theme-thanksgiving');
+    }
+}
+
 // Initialize the game
 function init() {
     createRacerCards();
     setupEventListeners();
     initAudio();
+    applySeasonalTheme();
 }
 
 // Play beep sound

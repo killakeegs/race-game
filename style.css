@@ -12,6 +12,103 @@ body {
     justify-content: center;
     align-items: center;
     color: white;
+    position: relative;
+}
+
+/* Halloween Theme (before Nov 1) */
+body.theme-halloween {
+    background: linear-gradient(135deg, #1a0a2e 0%, #2d1b3d 50%, #4a1f3a 100%);
+}
+
+body.theme-halloween::before {
+    content: '🎃 👻 🦇 💀 🕷️ 🎃 👻 🦇 💀 🕷️';
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 200%;
+    font-size: 2.5rem;
+    opacity: 0.3;
+    animation: scrollHalloween 30s linear infinite;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body.theme-halloween::after {
+    content: '🕸️ 🧛 🧟 🍬 🕸️ 🧛 🧟 🍬';
+    position: fixed;
+    bottom: 20px;
+    right: 0;
+    width: 200%;
+    font-size: 2.5rem;
+    opacity: 0.3;
+    animation: scrollHalloweenReverse 25s linear infinite;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes scrollHalloween {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@keyframes scrollHalloweenReverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
+
+body.theme-halloween h1 {
+    color: #ff6b2b;
+    text-shadow: 0 0 20px #ff6b2b, 0 0 40px #ff6b2b;
+}
+
+/* Thanksgiving Theme (after Nov 1) */
+body.theme-thanksgiving {
+    background: linear-gradient(135deg, #8b4513 0%, #d2691e 50%, #cd853f 100%);
+}
+
+body.theme-thanksgiving::before {
+    content: '🦃 🍂 🌽 🥧 🍁 🦃 🍂 🌽 🥧 🍁';
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 200%;
+    font-size: 2.5rem;
+    opacity: 0.4;
+    animation: scrollThanksgiving 35s linear infinite;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body.theme-thanksgiving::after {
+    content: '🍗 🌾 🎃 🍷 🍗 🌾 🎃 🍷';
+    position: fixed;
+    bottom: 20px;
+    right: 0;
+    width: 200%;
+    font-size: 2.5rem;
+    opacity: 0.4;
+    animation: scrollThanksgivingReverse 30s linear infinite;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes scrollThanksgiving {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@keyframes scrollThanksgivingReverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
+
+body.theme-thanksgiving h1 {
+    color: #ff8c00;
+    text-shadow: 0 0 20px #ffa500, 0 0 40px #ffa500;
 }
 
 /* Screen Management */
