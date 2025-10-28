@@ -386,7 +386,7 @@ function animateParallax(progress) {
 // Animate the race
 function animateRace() {
     const trackWidth = raceTrack.offsetWidth - 100; // Account for finish line and padding
-    const raceDuration = 20000; // 20 seconds
+    const raceDuration = 15000; // 15 seconds
     const updateInterval = 50; // Update every 50ms
     const totalUpdates = raceDuration / updateInterval;
 
@@ -500,6 +500,25 @@ function animateRace() {
     }, updateInterval);
 }
 
+// Funny winner messages (Cartman-inspired)
+const winnerMessages = [
+    "Respect my authoritah! Time to pay up! 💸",
+    "Screw you guys, ${name} won! Pay up! 💰",
+    "Seriously you guys, ${name} is the champion! Fork it over! 💸",
+    "${name} wins! Everyone else can suck it! 🏆",
+    "That's what I'm talking about! ${name} takes it all! 💵",
+    "${name} is so awesome! Time to pay the piper! 💸",
+    "Oh hamburgers! ${name} actually won! Hand it over! 🍔💰",
+    "${name} won fair and square. Cough up the cash! 💸",
+    "Sweet! ${name} is the winner! The rest of you... PAY UP! 💰",
+    "${name} kicked your ass! Time to settle the bill! 💸",
+    "Weak! ${name} totally dominated! Pay the winner! 💵",
+    "${name} rules! Everyone else drools! Money time! 💸",
+    "No butts about it, ${name} won! Hand over the dough! 💰",
+    "${name}'s a goddamn legend! Time to pay the price! 💸",
+    "Holy crap! ${name} won! Better pay up, hippie! 💵"
+];
+
 // Show the winner
 function showWinner(winnerId) {
     const winner = racers.find(r => r.id === winnerId);
@@ -508,13 +527,17 @@ function showWinner(winnerId) {
     stopBackgroundMusic();
     playVictory();
 
+    // Pick a random winner message
+    const randomMessage = winnerMessages[Math.floor(Math.random() * winnerMessages.length)];
+    const message = randomMessage.replace('${name}', winner.name);
+
     winnerDisplay.innerHTML = `
         <div class="racer-avatar" style="background-color: ${winner.color}">
             <img src="${winner.image}" alt="${winner.name}" class="racer-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <span class="racer-initial" style="display: none;">${winner.name.charAt(0)}</span>
         </div>
         <div class="racer-name">${winner.name}</div>
-        <div class="winner-message">Congratulations! Time to pay up! 💸</div>
+        <div class="winner-message">${message}</div>
     `;
 
     showScreen('winner');
